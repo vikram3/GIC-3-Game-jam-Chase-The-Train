@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="RNB Race 3D Template "
+config/name="GIC 3 Game Jam Chase The Train"
 config/description="The Race 3D template for Godot provides all you need to create a racing game:
 
 - 4 different vehicles ready to use
