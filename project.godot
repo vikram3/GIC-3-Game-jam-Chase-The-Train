@@ -11,35 +11,8 @@ config_version=5
 [application]
 
 config/name="GIC 3 Game Jam Chase The Train"
-config/description="The Race 3D template for Godot provides all you need to create a racing game:
-
-- 4 different vehicles ready to use
-
-- 1 test race circuit
-
-- Player car controller
-
-- AI car controller
-
-- Drift smoke
-
-- Skidmarks
-
-- Stop lights and front lights
-
-- Engine sound
-
-- SFX & music
-
-- Select car menu
-
-- Main menu
-
-- HUD with race positions, lap time, best lap time, lap number and total laps
-
-- Final race positions screen
-
-Suitable for beginners as well as for experts in Godot. Scripts are fully commented in english."
+config/description="Godot India Community Game Jam 3 Game Project
+"
 config/version="1.0"
 run/main_scene="res://Scenes/Menus/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
