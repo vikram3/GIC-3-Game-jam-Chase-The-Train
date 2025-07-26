@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc0hplvxrwxg3"]
+
+[ext_resource type="FontFile" uid="uid://bkn16srp1dny" path="res://Assets/Fonts/powerlordital.ttf" id="1_ctkf0"]
+
+[node name="Finish" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+layout_mode = 2
+anchor_right = 0.021
+anchor_bottom = 0.049
+offset_top = 224.0
+offset_right = 1151.16
+offset_bottom = 446.04
+color = Color(0, 0, 0, 0.337255)
+
+[node name="Position" type="Label" parent="."]
+layout_mode = 0
+offset_top = 224.0
+offset_right = 1152.0
+offset_bottom = 448.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_ctkf0")
+theme_override_font_sizes/font_size = 189
+text = "finish 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 2

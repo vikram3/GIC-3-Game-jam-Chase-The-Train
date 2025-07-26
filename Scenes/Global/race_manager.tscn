@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://8hkbiblh73fx"]
+
+[ext_resource type="AudioStream" uid="uid://ccoknof3w58q3" path="res://Assets/Music/racing tecno_v2.5.ogg" id="1_oc3q2"]
+[ext_resource type="Script" uid="uid://difj5fumn8uiv" path="res://Scenes/Global/raceManager.gd" id="1_ps1sw"]
+
+[node name="RaceManager" type="Node"]
+script = ExtResource("1_ps1sw")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_oc3q2")
+autoplay = true

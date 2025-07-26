@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bj60a63a50lt6"
+path="res://.godot/imported/SM_Bld_VehicleBay_03.obj-219add8e4f45ab4db7e2f325f143f12f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SM_Bld_VehicleBay_03.obj-219add8e4f45ab4db7e2f325f143f12f.mesh"]
+
+source_file="res://Assets/SourceFiles/Obj/SM_Bld_VehicleBay_03.obj"
+dest_files=["res://.godot/imported/SM_Bld_VehicleBay_03.obj-219add8e4f45ab4db7e2f325f143f12f.mesh", "res://.godot/imported/SM_Bld_VehicleBay_03.obj-219add8e4f45ab4db7e2f325f143f12f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,352 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckyku6h68xfi6"]
+
+[ext_resource type="Script" uid="uid://cfbu862jbqfbd" path="res://Scenes/HUD/podium.gd" id="1_l7buf"]
+[ext_resource type="FontFile" uid="uid://bhncooqoms0m" path="res://Assets/Fonts/speedkings.regular.otf" id="2_e0qrr"]
+[ext_resource type="FontFile" uid="uid://bkn16srp1dny" path="res://Assets/Fonts/powerlordital.ttf" id="3_j5e53"]
+
+[sub_resource type="Animation" id="Animation_c4j0p"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_yfet3"]
+resource_name = "countdown"
+length = 2.8
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jm7ob"]
+_data = {
+&"RESET": SubResource("Animation_c4j0p"),
+&"countdown": SubResource("Animation_yfet3")
+}
+
+[node name="Podium" type="CanvasLayer"]
+script = ExtResource("1_l7buf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RaceStats" type="Control" parent="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Stats" type="Control" parent="Control/RaceStats"]
+anchors_preset = 0
+offset_left = 192.0
+offset_top = -64.0
+offset_right = 232.0
+offset_bottom = -24.0
+
+[node name="DarkOverlay5" type="ColorRect" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+anchor_right = 0.021
+anchor_bottom = 0.049
+offset_left = 24.0
+offset_top = 184.0
+offset_right = 663.16
+offset_bottom = 590.04
+color = Color(0, 0, 0, 0.337255)
+
+[node name="Titles" type="Control" parent="Control/RaceStats/Stats"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PosTitle" type="Label" parent="Control/RaceStats/Stats/Titles"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 280.0
+offset_right = 176.0
+offset_bottom = 342.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_j5e53")
+theme_override_font_sizes/font_size = 35
+text = "pos"
+
+[node name="CarTitle" type="Label" parent="Control/RaceStats/Stats/Titles"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 280.0
+offset_right = 342.0
+offset_bottom = 337.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_j5e53")
+theme_override_font_sizes/font_size = 35
+text = "car"
+
+[node name="BestLapTitle" type="Label" parent="Control/RaceStats/Stats/Titles"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 280.0
+offset_right = 647.0
+offset_bottom = 337.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_j5e53")
+theme_override_font_sizes/font_size = 35
+text = "best lap"
+
+[node name="RaceResults" type="Label" parent="Control/RaceStats/Stats/Titles"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 200.0
+offset_right = 504.0
+offset_bottom = 262.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_j5e53")
+theme_override_font_sizes/font_size = 45
+text = "race results"
+
+[node name="Line" type="Label" parent="Control/RaceStats/Stats/Titles"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 231.0
+offset_right = 723.0
+offset_bottom = 270.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_j5e53")
+theme_override_font_sizes/font_size = 30
+text = "______________________________"
+
+[node name="Pos1" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 90.0
+offset_top = 344.0
+offset_right = 106.0
+offset_bottom = 398.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Car1" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 258.0
+offset_top = 344.0
+offset_right = 358.0
+offset_bottom = 398.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "----"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="RaceTime1" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 450.0
+offset_top = 344.0
+offset_right = 574.0
+offset_bottom = 398.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "0:00.000"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Pos2" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 400.0
+offset_right = 104.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "2"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Car2" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 256.0
+offset_top = 400.0
+offset_right = 356.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "----"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="RaceTime2" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 400.0
+offset_right = 572.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "0:00.000"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Pos3" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 456.0
+offset_right = 104.0
+offset_bottom = 510.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Car3" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 256.0
+offset_top = 456.0
+offset_right = 356.0
+offset_bottom = 510.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "----"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="RaceTime3" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 456.0
+offset_right = 572.0
+offset_bottom = 510.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "0:00.000"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Pos4" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 512.0
+offset_right = 104.0
+offset_bottom = 566.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "4"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="Car4" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 256.0
+offset_top = 512.0
+offset_right = 356.0
+offset_bottom = 566.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "----"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="RaceTime4" type="Label" parent="Control/RaceStats/Stats"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 512.0
+offset_right = 572.0
+offset_bottom = 566.0
+theme_override_colors/font_color = Color(0.988235, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e0qrr")
+theme_override_font_sizes/font_size = 50
+text = "0:00.000"
+horizontal_alignment = 3
+justification_flags = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "countdown"
+libraries = {
+"": SubResource("AnimationLibrary_jm7ob")
+}

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://byc43au321o1m"
+path="res://.godot/imported/SM_Env_Bridge_Pillar_01.obj-61d304440a2758ed92b029d074b4ec6d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SM_Env_Bridge_Pillar_01.obj-61d304440a2758ed92b029d074b4ec6d.mesh"]
+
+source_file="res://Assets/SourceFiles/Obj/SM_Env_Bridge_Pillar_01.obj"
+dest_files=["res://.godot/imported/SM_Env_Bridge_Pillar_01.obj-61d304440a2758ed92b029d074b4ec6d.mesh", "res://.godot/imported/SM_Env_Bridge_Pillar_01.obj-61d304440a2758ed92b029d074b4ec6d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

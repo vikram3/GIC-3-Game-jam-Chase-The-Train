@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dn6ec2vb5gft2"
+path="res://.godot/imported/SM_Env_Track_End_01.obj-dd2df3121dd12c755d5ea556ed734b61.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SM_Env_Track_End_01.obj-dd2df3121dd12c755d5ea556ed734b61.mesh"]
+
+source_file="res://Assets/SourceFiles/Obj/SM_Env_Track_End_01.obj"
+dest_files=["res://.godot/imported/SM_Env_Track_End_01.obj-dd2df3121dd12c755d5ea556ed734b61.mesh", "res://.godot/imported/SM_Env_Track_End_01.obj-dd2df3121dd12c755d5ea556ed734b61.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
