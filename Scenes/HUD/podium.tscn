@@ -345,8 +345,62 @@ text = "0:00.000"
 horizontal_alignment = 3
 justification_flags = 0
 
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 511.5
+offset_top = 82.0
+offset_right = 551.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Winner announcement"
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 482.0
+offset_top = 54.0
+offset_right = 581.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Train Caught"
+
+[node name="TrainStats" type="Container" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TrainResult" type="Label" parent="Control/TrainStats"]
+layout_mode = 2
+
+[node name="TrainTime" type="Label" parent="Control/TrainStats"]
+layout_mode = 2
+
+[node name="CatchTime" type="Label" parent="Control/TrainStats"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="MenuButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "countdown"
 libraries = {
-"": SubResource("AnimationLibrary_jm7ob")
+&"": SubResource("AnimationLibrary_jm7ob")
 }
+autoplay = "countdown"
