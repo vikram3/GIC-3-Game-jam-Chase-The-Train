@@ -18,8 +18,10 @@ func _ready():
 	
 func _process(delta):
 	if RaceManager.is_countdown_finished:
-		player = get_tree().get_nodes_in_group("player")
-		if player.size() > 0:
+		# Get player reference
+		var player_nodes = get_tree().get_nodes_in_group("player")
+		if player_nodes.size() > 0:
+			player = player_nodes[0]
 			update_race_info()
 			update_train_chase_status()
 	else:
@@ -30,12 +32,15 @@ func _process(delta):
 		show_race_end()
 
 func update_race_info():
-	time_string = format_time(player[0].current_lap_time)
-	time_string_best = format_time(player[0].best_lap_time)
+	if not player:
+		return
+		
+	time_string = format_time(player.current_lap_time)
+	time_string_best = format_time(player.best_lap_time)
 	
 	# Position relative to other cars
-	$Control/Position/Pos.text = str(player[0].race_position)
-	$Control/Position/TotalPos.text = "/" + str(RaceManager.cars_array.size())
+	$Control/Position/Pos.text = str(player.race_position)
+	$Control/Position/TotalPos.text = "/" + str(RaceManager.cars.size())
 	
 	# Time displays
 	$Control/Time/LapTime.text = time_string
@@ -46,19 +51,19 @@ func update_race_info():
 	$Control/Lap/TotalLapNumber.text = "/1"
 
 func update_train_chase_status():
+	if not player or not train_node:
+		return
+		
 	# Distance to train
-	var distance_to_train = 0.0
-	if train_node and player.size() > 0:
-		distance_to_train = player[0].global_position.distance_to(train_node.global_position)
+	var distance_to_train = player.distance_to_train
 	
 	# Update train chase specific UI elements
 	$Control/TrainChase/DistanceToTrain.text = "Distance: " + str(int(distance_to_train)) + "m"
 	
 	# Train progress bar
-	if train_node:
-		var train_progress = train_node.get_progress()
-		$Control/TrainChase/TrainProgress.value = train_progress * 100
-		$Control/TrainChase/TrainProgressLabel.text = "Train Progress: " + str(int(train_progress * 100)) + "%"
+	var train_progress = train_node.get_progress()
+	$Control/TrainChase/TrainProgress.value = train_progress * 100
+	$Control/TrainChase/TrainProgressLabel.text = "Train Progress: " + str(int(train_progress * 100)) + "%"
 	
 	# Race status
 	$Control/TrainChase/RaceStatus.text = RaceManager.get_race_status()
@@ -70,10 +75,21 @@ func update_train_chase_status():
 		$Control/TrainChase/DistanceToTrain.modulate = Color.YELLOW  # Getting close
 	else:
 		$Control/TrainChase/DistanceToTrain.modulate = Color.RED  # Far away
+	
+	# Speed indicator based on distance
+	if distance_to_train < 15.0:
+		$Control/TrainChase/SpeedStatus.text = "CATCHING UP!"
+		$Control/TrainChase/SpeedStatus.modulate = Color.GREEN
+	elif distance_to_train < 50.0:
+		$Control/TrainChase/SpeedStatus.text = "IN PURSUIT"
+		$Control/TrainChase/SpeedStatus.modulate = Color.YELLOW
+	else:
+		$Control/TrainChase/SpeedStatus.text = "TOO FAR"
+		$Control/TrainChase/SpeedStatus.modulate = Color.RED
 
 func display_waiting_state():
 	$Control/Position/Pos.text = "-"
-	$Control/Position/TotalPos.text = "/" + str(RaceManager.cars_array.size())
+	$Control/Position/TotalPos.text = "/" + str(RaceManager.cars.size()) if RaceManager.cars.size() > 0 else "/4"
 	$Control/Time/LapTime.text = "00:00.000"
 	$Control/Time/BestTime.text = "00:00.000"
 	$Control/Lap/LapNumber.text = "-"
@@ -82,21 +98,26 @@ func display_waiting_state():
 	$Control/TrainChase/TrainProgress.value = 0
 	$Control/TrainChase/TrainProgressLabel.text = "Train Progress: 0%"
 	$Control/TrainChase/RaceStatus.text = "GET READY..."
+	$Control/TrainChase/SpeedStatus.text = "WAITING..."
+	$Control/TrainChase/SpeedStatus.modulate = Color.WHITE
 
 func show_race_end():
+	if not player:
+		return
+		
 	if RaceManager.train_caught:
-		if player.size() > 0 and player[0].has_caught_train:
+		if player.has_caught_train:
 			$AnimationPlayer.play("victory")  # Player won
 			$Control/Finish/FinalResult.text = "YOU CAUGHT THE TRAIN!"
 			$Control/Finish/FinalPosition.text = "WINNER!"
 		else:
 			$AnimationPlayer.play("finish")  # Someone else caught it
 			$Control/Finish/FinalResult.text = "TRAIN WAS CAUGHT"
-			$Control/Finish/FinalPosition.text = "Position: " + str(player[0].race_position)
+			$Control/Finish/FinalPosition.text = "Position: " + str(player.race_position)
 	else:
 		$AnimationPlayer.play("defeat")  # Train escaped
 		$Control/Finish/FinalResult.text = "TRAIN ESCAPED!"
-		$Control/Finish/FinalPosition.text = "Final Position: " + str(player[0].race_position)
+		$Control/Finish/FinalPosition.text = "Final Position: " + str(player.race_position)
 	
 	RaceManager.is_player_race_finished = false
 

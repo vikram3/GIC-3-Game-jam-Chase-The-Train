@@ -39,14 +39,12 @@ var car4_acc = 55.0
 
 var car_number = 1
 
-
 func _ready():
 	car_name.text = car1_name
 	car_description.text = car1_description
 	top_speed_bar.value = car1_top_speed
 	grip_bar.value = car1_grip
 	acceleration_bar.value = car1_acc
-
 
 func _process(delta):
 	podium.rotate_y(deg_to_rad(rotation_speed * delta))
@@ -87,7 +85,6 @@ func _process(delta):
 		acceleration_bar.value = lerp(acceleration_bar.value, car4_acc, 10 * delta)
 		grip_bar.value = lerp(grip_bar.value, car4_grip, 10 * delta)
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "bronco_fade_out" and car_number == 2:
 		$AnimationPlayer.play("datssun_fade_in")
@@ -106,34 +103,13 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "lyon_fade_out" and car_number == 3:
 		$AnimationPlayer.play("r12_fade_in")
 
-
-func _on_previoust_btn_pressed():
-	if car_number == 1:
-		$AnimationPlayer.play("bronco_fade_out")
-		car_number = 4
-	elif car_number == 2:
-		$AnimationPlayer.play("datssun_fade_out")
-		car_number -= 1
-	elif car_number == 3:
-		$AnimationPlayer.play("r12_fade_out")
-		car_number -= 1
-	elif car_number == 4:
-		$AnimationPlayer.play("lyon_fade_out")
-		car_number -= 1
+func _on_previous_btn_pressed():
+	# Lock car selection to Bronco (car_number = 1)
+	pass
 
 func _on_next_btn_pressed():
-	if car_number == 1:
-		$AnimationPlayer.play("bronco_fade_out")
-		car_number += 1
-	elif car_number == 2:
-		$AnimationPlayer.play("datssun_fade_out")
-		car_number += 1
-	elif car_number == 3:
-		$AnimationPlayer.play("r12_fade_out")
-		car_number += 1
-	elif car_number == 4:
-		$AnimationPlayer.play("lyon_fade_out")
-		car_number = 1
+	# Lock car selection to Bronco (car_number = 1)
+	pass
 
 func _on_select_btn_pressed():
 	RaceManager.car_selected = car_number

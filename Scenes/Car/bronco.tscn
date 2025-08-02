@@ -309,8 +309,6 @@ radius = 1.0
 [node name="Canyonero" type="Node3D" groups=["car"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.9476)
 script = ExtResource("1_vg3k3")
-is_AI = true
-max_speed = 215
 brake_force = 0.95
 turn_strength = 110
 acceleration = 0.85
@@ -318,16 +316,15 @@ body_height = 0.0
 body_pos = -0.002
 is_lights_on = false
 car_name = "Canyonero"
-target_variance = 0.5
 
 [node name="Rig" type="Node3D" parent="."]
-transform = Transform3D(0.707107, 0.298836, -0.640856, 0, 0.906308, 0.422618, 0.707107, -0.298836, 0.640856, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.84236)
 
 [node name="Camera3D" type="Camera3D" parent="Rig"]
-transform = Transform3D(-0.707107, 0.157356, -0.689376, -0.298836, 0.81708, 0.493028, 0.640857, 0.554634, -0.53074, -5.01613, 5.01861, -3.19447)
+transform = Transform3D(-0.997057, 0, 0.0766669, 0, 1, 0, -0.0766669, 0, -0.997057, 0, 2.5, -4.72107)
 current = true
-fov = 30.0
-far = 100.0
+fov = 45.3
+far = 1000.0
 
 [node name="Container" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

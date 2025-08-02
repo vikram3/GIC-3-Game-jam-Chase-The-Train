@@ -375,7 +375,7 @@ radius = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.9476)
 script = ExtResource("1_m3e4f")
 is_AI = true
-max_speed = 205
+max_speed = 400
 brake_force = 0.95
 turn_strength = 125
 body_height = 0.1
@@ -536,8 +536,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_8yckp")
 gravity_scale = 1.1
-continuous_cd = true
 can_sleep = false
+continuous_cd = true
 linear_damp = 1.0
 angular_damp = 2.0
 
@@ -554,4 +554,4 @@ stream = ExtResource("5_paoe4")
 stream = ExtResource("6_8hbe3")
 volume_db = -5.0
 
-[connection signal="area_entered" from="Container/Model/Area3D" to="." method="_on_area_3d_area_entered" flags=18]
+[connection signal="area_entered" from="Container/Model/Area3D" to="." method="_on_area_3d_area_entered"]

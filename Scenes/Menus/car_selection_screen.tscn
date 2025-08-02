@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cqyfbnedyyun7" path="res://Assets/Menus/left.png" id="4_1bklp"]
 [ext_resource type="FontFile" uid="uid://bkn16srp1dny" path="res://Assets/Fonts/powerlordital.ttf" id="5_0rv8d"]
 [ext_resource type="Texture2D" uid="uid://cxwi44557ovtc" path="res://Assets/Menus/right.png" id="5_unun2"]
-[ext_resource type="Texture2D" uid="uid://sywpulxisf8t" path="res://Assets/Textures/abstract-textured-backgound2.jpg" id="7_1unu0"]
 [ext_resource type="Texture2D" uid="uid://mlq86npc2knf" path="res://Assets/Menus/progress.png" id="7_3jmtl"]
 [ext_resource type="Texture2D" uid="uid://bdol2gvpvmww1" path="res://Assets/Menus/under.png" id="7_t1qgc"]
 [ext_resource type="FontFile" uid="uid://ilhc3gww3l6f" path="res://Assets/Fonts/speedkings.regular.ttf" id="8_uvlcj"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://3ww480hclel3" path="res://Assets/Models/Cars/Bronco/Textures/Color Palette 6.png" id="12_6enja"]
 [ext_resource type="Texture2D" uid="uid://ckdolab7swks6" path="res://Assets/Models/Cars/Datssun/Textures/Placa.png" id="17_xta3v"]
 [ext_resource type="Texture2D" uid="uid://col7arptqnlo4" path="res://Assets/Models/Cars/Datssun/Textures/Black Texture.png" id="18_fbt7r"]
+[ext_resource type="Texture2D" uid="uid://cxshn2lk7lq8" path="res://Assets/bg/Desert Clean.png" id="18_pf3tt"]
 [ext_resource type="Texture2D" uid="uid://s0rqg7m6jvsx" path="res://Assets/Models/Cars/Datssun/Textures/Orange Texture.png" id="19_5vnro"]
 [ext_resource type="Texture2D" uid="uid://bkhgi0r67ft74" path="res://Assets/Models/Cars/Lyon206/textures/material_baseColor.png" id="20_0mf2q"]
 [ext_resource type="Texture2D" uid="uid://cf73nfxfeexga" path="res://Assets/Models/Cars/R12/textures/Vehicle_baseColor.png" id="21_iwloh"]
@@ -2161,12 +2161,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_1unu0")
+texture = ExtResource("18_pf3tt")
 expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_g5l1v")
+&"": SubResource("AnimationLibrary_g5l1v")
 }
 autoplay = "init"
 

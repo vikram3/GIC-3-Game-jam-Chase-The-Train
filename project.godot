@@ -14,7 +14,7 @@ config/name="GIC 3 Game Jam Chase The Train"
 config/description="Godot India Community Game Jam 3 Game Project
 "
 config/version="1.0"
-run/main_scene="res://Scenes/Menus/main_menu.tscn"
+run/main_scene="uid://djncet604y3s0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ RaceManager="*res://Scenes/Global/race_manager.tscn"
 
 [display]
 
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

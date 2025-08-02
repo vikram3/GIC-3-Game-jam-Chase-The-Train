@@ -2,10 +2,10 @@ extends Node
 
 # Train Chase Game Settings
 @export var total_laps = 1  # Single lap only
-@export var train_speed = 150  # Train's base speed
-@export var train_acceleration = 0.5
-@export var train_max_speed = 200
-@export var catch_distance = 5.0  # Distance needed to "catch" the train
+@export var train_speed = 80  # Train's base speed (increased)
+@export var train_acceleration = 0.8
+@export var train_max_speed = 160
+@export var catch_distance = 8.0  # Distance needed to "catch" the train (increased)
 
 @onready var cars = []
 @onready var cars_array = []
@@ -34,12 +34,19 @@ func _ready():
 func _process(delta):
 	if is_countdown_finished and !train_caught:
 		train_lap_time += delta
-		update_train_position(delta)
 		check_train_catch()
+		
+		# Check if train completed lap
+		if train_node and train_node.get_progress() >= 1.0 and !train_caught:
+			end_race_train_escaped()
 	
 	# Update car positions relative to train
 	if finished_cars < cars_array.size() and !train_caught:
-		for i in range(cars_array.size()):
+		update_car_positions()
+
+func update_car_positions():
+	for i in range(cars_array.size()):
+		if i < cars.size():
 			var car = cars[i]
 			var car_data = {
 				"car_name": car.car_name,
@@ -48,49 +55,37 @@ func _process(delta):
 				"distance_to_next_waypoint": car.distance_to_next_waypoint,
 				"lap_number": car.current_lap,
 				"best_lap": car.best_lap_time,
-				"race_time": car.race_time,
+				"race_time": car.current_lap_time,
 				"race_position": car.race_position,
 				"caught_train": car.has_caught_train if "has_caught_train" in car else false
 			}
 			cars_array[i] = car_data
-		
-		# Sort cars by distance to train (closest first)
-		train_chase_sort(cars_array)
 	
-	# Check if race should end (train completes lap or someone catches it)
-	if train_progress >= 1.0 and !train_caught:
-		end_race_train_escaped()
-
-func update_train_position(delta):
-	if train_node and train_waypoints.size() > 0:
-		# Move train along waypoints
-		var target_pos = train_waypoints[train_current_waypoint].global_position
-		var distance_to_waypoint = train_node.global_position.distance_to(target_pos)
-		
-		# Move towards current waypoint
-		var direction = (target_pos - train_node.global_position).normalized()
-		var current_speed = min(train_speed + (train_acceleration * train_lap_time), train_max_speed)
-		
-		train_node.global_position += direction * current_speed * delta
-		
-		# Check if reached waypoint
-		if distance_to_waypoint < 3.0:
-			train_current_waypoint += 1
-			if train_current_waypoint >= train_waypoints.size():
-				train_current_waypoint = 0
-				train_progress = 1.0  # Completed lap
-			else:
-				train_progress = float(train_current_waypoint) / float(train_waypoints.size())
+	# Sort cars by distance to train (closest first)
+	train_chase_sort(cars_array)
+	
+	# Update race positions
+	for i in range(cars.size()):
+		if i < cars_array.size():
+			cars[i].race_position = i + 1
 
 func calculate_distance_to_train(car):
-	if train_node:
+	if train_node and train_node.has_method("get_front_position"):
+		return car.global_position.distance_to(train_node.get_front_position())
+	elif train_node:
 		return car.global_position.distance_to(train_node.global_position)
 	return 999999.0
 
 func check_train_catch():
-	for car in cars:
+	# Check each car for train catching
+	for i in range(cars.size()):
+		var car = cars[i]
 		var distance_to_train = calculate_distance_to_train(car)
-		if distance_to_train <= catch_distance:
+		
+		# Multiple ways to catch the train
+		if (distance_to_train <= catch_distance or 
+		   (train_node and train_node.has_method("can_be_caught_by") and train_node.can_be_caught_by(car.global_position))) and !train_caught:
+			
 			train_caught = true
 			winner_car = car
 			car.has_caught_train = true
@@ -101,16 +96,26 @@ func end_race_train_caught(catching_car):
 	print(catching_car.car_name + " caught the train and wins!")
 	race_end_time = train_lap_time
 	
-	# Set final positions
-	for i in range(cars.size()):
-		var car = cars[i]
-		if car == catching_car:
-			car.race_position = 1
-			car.is_race_finished = true
-		else:
-			# Sort remaining cars by distance to train
-			car.race_position = i + 2  # 2nd place onwards
-			car.is_race_finished = true
+	# Set winner position
+	catching_car.race_position = 1
+	catching_car.is_race_finished = true
+	
+	# Set other cars' positions based on distance to train
+	var other_cars = []
+	for car in cars:
+		if car != catching_car:
+			other_cars.append({
+				"car": car,
+				"distance": calculate_distance_to_train(car)
+			})
+	
+	# Sort other cars by distance to train
+	other_cars.sort_custom(func(a, b): return a.distance < b.distance)
+	
+	# Assign positions
+	for i in range(other_cars.size()):
+		other_cars[i].car.race_position = i + 2
+		other_cars[i].car.is_race_finished = true
 	
 	finished_cars = cars.size()
 	show_podium = true
@@ -120,11 +125,20 @@ func end_race_train_escaped():
 	race_end_time = train_lap_time
 	
 	# Final sort by distance to train when race ended
-	train_chase_sort(cars_array)
+	var car_distances = []
+	for car in cars:
+		car_distances.append({
+			"car": car,
+			"distance": calculate_distance_to_train(car)
+		})
 	
-	for i in range(cars.size()):
-		cars[i].race_position = i + 1
-		cars[i].is_race_finished = true
+	# Sort by distance (closest first)
+	car_distances.sort_custom(func(a, b): return a.distance < b.distance)
+	
+	# Assign final positions
+	for i in range(car_distances.size()):
+		car_distances[i].car.race_position = i + 1
+		car_distances[i].car.is_race_finished = true
 	
 	finished_cars = cars.size()
 	show_podium = true
@@ -154,13 +168,18 @@ func compare_train_chase(a, b):
 		return 0
 
 func on_game_ready():
+	await get_tree().process_frame  # Wait for all nodes to be ready
+	
 	cars = get_tree().get_nodes_in_group("car")
 	cars_array = []
 	
 	# Find train node
 	train_node = get_tree().get_first_node_in_group("train")
 	if !train_node:
-		print("Warning: No train found in scene!")
+		print("ERROR: No train found in scene!")
+		return
+	else:
+		print("RaceManager: Found train node")
 	
 	for car in cars:
 		var car_data = {
@@ -177,14 +196,18 @@ func on_game_ready():
 		cars_array.append(car_data)
 	
 	train_chase_sort(cars_array)
+	print("RaceManager ready: ", cars.size(), " cars registered")
 
 func get_train_progress():
-	return train_progress
+	if train_node and train_node.has_method("get_progress"):
+		return train_node.get_progress()
+	return 0.0
 
 func get_race_status():
 	if train_caught:
 		return "TRAIN CAUGHT!"
-	elif train_progress >= 1.0:
+	elif get_train_progress() >= 1.0:
 		return "TRAIN ESCAPED!"
 	else:
-		return "CHASING TRAIN..."
+		var progress_percent = int(get_train_progress() * 100)
+		return "CHASING TRAIN... (" + str(progress_percent) + "%)"
